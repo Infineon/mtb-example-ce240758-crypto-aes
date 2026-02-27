@@ -8,36 +8,33 @@
 *
 *
 *******************************************************************************
-* Copyright 2024-2025, Cypress Semiconductor Corporation (an Infineon company) or
-* an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
-*
-* This software, including source code, documentation and related
-* materials ("Software") is owned by Cypress Semiconductor Corporation
-* or one of its affiliates ("Cypress") and is protected by and subject to
-* worldwide patent protection (United States and foreign),
-* United States copyright laws and international treaty provisions.
-* Therefore, you may use this Software only as provided in the license
-* agreement accompanying the software package from which you
-* obtained this Software ("EULA").
-* If no EULA applies, Cypress hereby grants you a personal, non-exclusive,
-* non-transferable license to copy, modify, and compile the Software
-* source code solely for use in connection with Cypress's
-* integrated circuit products.  Any reproduction, modification, translation,
-* compilation, or representation of this Software except as specified
-* above is prohibited without the express written permission of Cypress.
-*
-* Disclaimer: THIS SOFTWARE IS PROVIDED AS-IS, WITH NO WARRANTY OF ANY KIND,
-* EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, NONINFRINGEMENT, IMPLIED
-* WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. Cypress
-* reserves the right to make changes to the Software without notice. Cypress
-* does not assume any liability arising out of the application or use of the
-* Software or any product or circuit described in the Software. Cypress does
-* not authorize its products for use in any products where a malfunction or
-* failure of the Cypress product may reasonably be expected to result in
-* significant property damage, injury or death ("High Risk Product"). By
-* including Cypress's product in a High Risk Product, the manufacturer
-* of such system or application assumes all risk of such use and in doing
-* so agrees to indemnify Cypress against all liability.
+ * (c) 2024-2026, Infineon Technologies AG, or an affiliate of Infineon
+ * Technologies AG. All rights reserved.
+ * This software, associated documentation and materials ("Software") is
+ * owned by Infineon Technologies AG or one of its affiliates ("Infineon")
+ * and is protected by and subject to worldwide patent protection, worldwide
+ * copyright laws, and international treaty provisions. Therefore, you may use
+ * this Software only as provided in the license agreement accompanying the
+ * software package from which you obtained this Software. If no license
+ * agreement applies, then any use, reproduction, modification, translation, or
+ * compilation of this Software is prohibited without the express written
+ * permission of Infineon.
+ *
+ * Disclaimer: UNLESS OTHERWISE EXPRESSLY AGREED WITH INFINEON, THIS SOFTWARE
+ * IS PROVIDED AS-IS, WITH NO WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+ * INCLUDING, BUT NOT LIMITED TO, ALL WARRANTIES OF NON-INFRINGEMENT OF
+ * THIRD-PARTY RIGHTS AND IMPLIED WARRANTIES SUCH AS WARRANTIES OF FITNESS FOR A
+ * SPECIFIC USE/PURPOSE OR MERCHANTABILITY.
+ * Infineon reserves the right to make changes to the Software without notice.
+ * You are responsible for properly designing, programming, and testing the
+ * functionality and safety of your intended application of the Software, as
+ * well as complying with any legal requirements related to its use. Infineon
+ * does not guarantee that the Software will be free from intrusion, data theft
+ * or loss, or other breaches ("Security Breaches"), and Infineon shall have
+ * no liability arising out of any Security Breaches. Unless otherwise
+ * explicitly approved by Infineon, the Software may not be used in any
+ * application where a failure of the Product or any consequences of the use
+ * thereof can reasonably be expected to result in personal injury.
 *******************************************************************************/
  
 #include "cy_pdl.h" 
@@ -52,14 +49,14 @@
 /* The input message size (inclusive of the string terminating character '\0').
  * Edit this macro to suit your message size.
  */
-#define MAX_MESSAGE_SIZE                     (100u)
+#define MAX_MESSAGE_SIZE                     (8u * CY_CRYPTO_AES_BLOCK_SIZE)
 
 /* Size of the message block that can be processed by Crypto hardware for
  * AES encryption.
  */
-#define AES128_ENCRYPTION_LENGTH             (uint32_t)(16u)
+#define AES128_ENCRYPTION_LENGTH             CY_CRYPTO_AES_BLOCK_SIZE
 
-#define AES128_KEY_LENGTH                    (uint32_t)(16u)
+#define AES128_KEY_LENGTH                    CY_CRYPTO_AES_128_KEY_SIZE
 
 /* \x1b[2J\x1b[;H - ANSI ESC sequence for clear screen. */
 #define CLEAR_SCREEN                         "\x1b[2J\x1b[;H"
@@ -103,7 +100,6 @@ void decrypt_message(uint8_t* message, uint8_t size);
 /*******************************************************************************
 * Global Variables
 ********************************************************************************/
-
 /* Variables to hold the user message and the corresponding encrypted message */
 CY_ALIGN(4) uint8_t message[MAX_MESSAGE_SIZE];
 CY_ALIGN(4) uint8_t encrypted_msg[MAX_MESSAGE_SIZE];
@@ -138,13 +134,12 @@ static mtb_hal_uart_t               UART_hal_obj;           /** Debug UART HAL o
 int main(void)
 {
     cy_rslt_t result = CY_RSLT_SUCCESS;
-    
+    uint32_t read_value = 0;
+    uint8_t msg_size = 0;
 
     /* Variable to track the status of the message entered by the user */
     message_status_t msg_status = MESSAGE_ENTER_NEW;
-    
-    uint8_t msg_size = 0;
-    bool uart_status = false;
+    memset(message, 0, MAX_MESSAGE_SIZE);
 
     /* Initialize the device and board peripherals */
     result = cybsp_init();
@@ -193,24 +188,22 @@ int main(void)
     /* Enable the Crypto block */
     Cy_Crypto_Core_Enable(CRYPTO);
 
+#if defined (CY_IP_M7CPUSS)
     SCB_DisableDCache(); 
+#endif
 
     printf("\r\nEnter the message:\r\n");
 
     for (;;)
     {
-
         switch (msg_status)
         {
             case MESSAGE_ENTER_NEW:
             {
-                
-                message[msg_size] = Cy_SCB_UART_Get(UART_HW);
-                
-                uart_status = Cy_SCB_UART_GetReceiveStatus(UART_HW, NULL);
-                                
-                if (((!uart_status) == 0x00) && (message[msg_size] != 0xff))
+                read_value = Cy_SCB_UART_Get(UART_HW);
+                if(read_value != CY_SCB_UART_RX_NO_DATA)
                 {
+                    message[msg_size] = read_value;
                     /* Check if the ENTER Key is pressed. If pressed, set the message
                      * status as MESSAGE_READY.
                      */
@@ -221,16 +214,15 @@ int main(void)
                     }
                     else
                     {
-                       
-                        Cy_SCB_UART_Put(UART_HW, message[msg_size]);
-
                         /* Check if Backspace is pressed by the user. */
                         if(message[msg_size] != '\b')
                         {
+                            Cy_SCB_UART_Put(UART_HW, message[msg_size]);
                             msg_size++;
                         } 
                         else
                         {
+                            Cy_SCB_WriteString(UART_HW, "\b \b");
                             if(msg_size > 0)
                             {
                                 msg_size--;

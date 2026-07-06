@@ -755,7 +755,7 @@
                         <Param id="actionCsv" value="FAULT"/>
                         <Param id="divider" value="1"/>
                         <Param id="sourceClockCsv" value="IMO"/>
-                        <Param id="sourceClockNumber" value="0"/>
+                        <Param id="sourceClockNumber" value="5"/>
                     </Parameters>
                 </Personality>
                 <Personality template="ilo" version="3.0" instance="yljzpq-80ME">
@@ -824,7 +824,7 @@
                 <Personality template="pathmux" version="3.0" instance="XmVe3Fhs-qw">
                     <Block location="srss[0].clock[0].pathmux[5]" locked="true"/>
                     <Parameters>
-                        <Param id="sourceClock" value="imo"/>
+                        <Param id="sourceClock" value="ilo0"/>
                     </Parameters>
                 </Personality>
                 <Personality template="pathmux" version="3.0" instance="tDee7aDBFmU">
@@ -850,7 +850,7 @@
                     <Block location="srss[0].clock[0].pll400m[1]" locked="true"/>
                     <Parameters>
                         <Param id="configuration" value="auto"/>
-                        <Param id="desiredFrequency" value="125.000"/>
+                        <Param id="desiredFrequency" value="123.000"/>
                     </Parameters>
                 </Personality>
                 <Personality template="pll" version="3.0" instance="ND-8eqvHjTw">

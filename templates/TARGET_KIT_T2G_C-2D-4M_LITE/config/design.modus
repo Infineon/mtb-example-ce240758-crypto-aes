@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration app="BACKEND" formatVersion="15" lastSavedWith="Configurator Backend" lastSavedWithVersion="3.60.0" toolsPackage="ModusToolbox 3.6.0" xmlns="http://cypress.com/xsd/cydesignfile_v6">
+<Configuration app="BACKEND" formatVersion="15" lastSavedWith="Configurator Backend" lastSavedWithVersion="3.70.0" toolsPackage="ModusToolbox 3.7.0" xmlns="http://cypress.com/xsd/cydesignfile_v7">
     <Devices>
         <Device mpn="CYT3DLBBHS">
             <BlockConfig>
@@ -591,98 +591,150 @@
                         <Param id="enableOutputDivider" value="false"/>
                     </Parameters>
                 </Personality>
-                <Personality template="hfclk_t2g2d6m" version="1.0" instance="yKtmX7u350o">
+                <Personality template="hfclk" version="4.0" instance="kzGQI9M4ig8">
                     <Block location="srss[0].clock[0].hfclk[0]" locked="true"/>
                     <Parameters>
+                        <Param id="ClkHfCsv" value="false"/>
+                        <Param id="accuracyCsv" value="99"/>
+                        <Param id="actionCsv" value="FAULT"/>
                         <Param id="divider" value="1"/>
+                        <Param id="sourceClockCsv" value="IMO"/>
                         <Param id="sourceClockNumber" value="6"/>
                     </Parameters>
                 </Personality>
-                <Personality template="hfclk_t2g2d6m" version="1.0" instance="IB222DpxlGU">
+                <Personality template="hfclk" version="4.0" instance="Gl6P78yC-gM">
                     <Block location="srss[0].clock[0].hfclk[1]" locked="true"/>
                     <Parameters>
+                        <Param id="ClkHfCsv" value="false"/>
+                        <Param id="accuracyCsv" value="99"/>
+                        <Param id="actionCsv" value="FAULT"/>
                         <Param id="divider" value="1"/>
+                        <Param id="sourceClockCsv" value="IMO"/>
                         <Param id="sourceClockNumber" value="1"/>
                     </Parameters>
                 </Personality>
-                <Personality template="hfclk_t2g2d6m" version="1.0" instance="pfuD6KzgDPI">
+                <Personality template="hfclk" version="4.0" instance="RjHHJ27trGs">
                     <Block location="srss[0].clock[0].hfclk[2]" locked="true"/>
                     <Parameters>
+                        <Param id="ClkHfCsv" value="false"/>
+                        <Param id="accuracyCsv" value="99"/>
+                        <Param id="actionCsv" value="FAULT"/>
                         <Param id="divider" value="1"/>
+                        <Param id="sourceClockCsv" value="IMO"/>
                         <Param id="sourceClockNumber" value="0"/>
                     </Parameters>
                 </Personality>
-                <Personality template="hfclk_t2g2d6m" version="1.0" instance="rgmZ7xRl4Bg">
+                <Personality template="hfclk" version="4.0" instance="PHtHdrufvnw">
                     <Block location="srss[0].clock[0].hfclk[3]" locked="true"/>
                     <Parameters>
+                        <Param id="ClkHfCsv" value="false"/>
+                        <Param id="accuracyCsv" value="99"/>
+                        <Param id="actionCsv" value="FAULT"/>
                         <Param id="divider" value="1"/>
+                        <Param id="sourceClockCsv" value="IMO"/>
                         <Param id="sourceClockNumber" value="0"/>
                     </Parameters>
                 </Personality>
-                <Personality template="hfclk_t2g2d6m" version="1.0" instance="F4CGpXWdaLc">
+                <Personality template="hfclk" version="4.0" instance="R6hAxhryy_Y">
                     <Block location="srss[0].clock[0].hfclk[4]" locked="true"/>
                     <Parameters>
+                        <Param id="ClkHfCsv" value="false"/>
+                        <Param id="accuracyCsv" value="99"/>
+                        <Param id="actionCsv" value="FAULT"/>
                         <Param id="divider" value="2"/>
+                        <Param id="sourceClockCsv" value="IMO"/>
                         <Param id="sourceClockNumber" value="0"/>
                     </Parameters>
                 </Personality>
-                <Personality template="hfclk_t2g2d6m" version="1.0" instance="fT-cY4HDJEI">
+                <Personality template="hfclk" version="4.0" instance="4CCooFPrEz8">
                     <Block location="srss[0].clock[0].hfclk[5]" locked="true"/>
                     <Parameters>
+                        <Param id="ClkHfCsv" value="false"/>
+                        <Param id="accuracyCsv" value="99"/>
+                        <Param id="actionCsv" value="FAULT"/>
                         <Param id="divider" value="1"/>
+                        <Param id="sourceClockCsv" value="IMO"/>
                         <Param id="sourceClockNumber" value="0"/>
                     </Parameters>
                 </Personality>
-                <Personality template="hfclk_t2g2d6m" version="1.0" instance="JmkeOBfibvw">
+                <Personality template="hfclk" version="4.0" instance="3bDbfI3JMFc">
                     <Block location="srss[0].clock[0].hfclk[6]" locked="true"/>
                     <Parameters>
+                        <Param id="ClkHfCsv" value="false"/>
+                        <Param id="accuracyCsv" value="99"/>
+                        <Param id="actionCsv" value="FAULT"/>
                         <Param id="divider" value="1"/>
+                        <Param id="sourceClockCsv" value="IMO"/>
                         <Param id="sourceClockNumber" value="0"/>
                     </Parameters>
                 </Personality>
-                <Personality template="hfclk_t2g2d6m" version="1.0" instance="co7mSlCgQ3M">
+                <Personality template="hfclk" version="4.0" instance="esUkrvzj90A">
                     <Block location="srss[0].clock[0].hfclk[7]" locked="true"/>
                     <Parameters>
+                        <Param id="ClkHfCsv" value="false"/>
+                        <Param id="accuracyCsv" value="99"/>
+                        <Param id="actionCsv" value="FAULT"/>
                         <Param id="divider" value="1"/>
+                        <Param id="sourceClockCsv" value="IMO"/>
                         <Param id="sourceClockNumber" value="0"/>
                     </Parameters>
                 </Personality>
-                <Personality template="hfclk_t2g2d6m" version="1.0" instance="7RwGwd2z_3s">
+                <Personality template="hfclk" version="4.0" instance="vt268gticEs">
                     <Block location="srss[0].clock[0].hfclk[8]" locked="true"/>
                     <Parameters>
+                        <Param id="ClkHfCsv" value="false"/>
+                        <Param id="accuracyCsv" value="99"/>
+                        <Param id="actionCsv" value="FAULT"/>
                         <Param id="divider" value="1"/>
+                        <Param id="sourceClockCsv" value="IMO"/>
                         <Param id="sourceClockNumber" value="3"/>
                     </Parameters>
                 </Personality>
-                <Personality template="hfclk_t2g2d6m" version="1.0" instance="8IRBHwHbs6w">
+                <Personality template="hfclk" version="4.0" instance="hfTREqwnNuI">
                     <Block location="srss[0].clock[0].hfclk[9]" locked="true"/>
                     <Parameters>
+                        <Param id="ClkHfCsv" value="false"/>
+                        <Param id="accuracyCsv" value="99"/>
+                        <Param id="actionCsv" value="FAULT"/>
                         <Param id="divider" value="1"/>
+                        <Param id="sourceClockCsv" value="IMO"/>
                         <Param id="sourceClockNumber" value="3"/>
                     </Parameters>
                 </Personality>
-                <Personality template="hfclk_t2g2d6m" version="1.0" instance="CshX1VC7FbI">
+                <Personality template="hfclk" version="4.0" instance="AU2ggMLZblo">
                     <Block location="srss[0].clock[0].hfclk[10]" locked="true"/>
                     <Parameters>
+                        <Param id="ClkHfCsv" value="false"/>
+                        <Param id="accuracyCsv" value="99"/>
+                        <Param id="actionCsv" value="FAULT"/>
                         <Param id="divider" value="1"/>
+                        <Param id="sourceClockCsv" value="IMO"/>
                         <Param id="sourceClockNumber" value="4"/>
                     </Parameters>
                 </Personality>
-                <Personality template="hfclk_t2g2d6m" version="1.0" instance="8mAWiA4ZrDo">
+                <Personality template="hfclk" version="4.0" instance="clS6SZZcGbc">
                     <Block location="srss[0].clock[0].hfclk[11]" locked="true"/>
                     <Parameters>
+                        <Param id="ClkHfCsv" value="false"/>
+                        <Param id="accuracyCsv" value="99"/>
+                        <Param id="actionCsv" value="FAULT"/>
                         <Param id="divider" value="1"/>
+                        <Param id="sourceClockCsv" value="IMO"/>
                         <Param id="sourceClockNumber" value="0"/>
                     </Parameters>
                 </Personality>
-                <Personality template="hfclk_t2g2d6m" version="1.0" instance="ase_AjfgSIM">
+                <Personality template="hfclk" version="4.0" instance="bv0mZ9VppSA">
                     <Block location="srss[0].clock[0].hfclk[12]" locked="true"/>
                     <Parameters>
+                        <Param id="ClkHfCsv" value="false"/>
+                        <Param id="accuracyCsv" value="99"/>
+                        <Param id="actionCsv" value="FAULT"/>
                         <Param id="divider" value="1"/>
+                        <Param id="sourceClockCsv" value="IMO"/>
                         <Param id="sourceClockNumber" value="0"/>
                     </Parameters>
                 </Personality>
-                <Personality template="hfclk" version="3.0" instance="DkkXxWFMAMs">
+                <Personality template="hfclk" version="4.0" instance="A0YgPsA8e7g">
                     <Block location="srss[0].clock[0].hfclk[13]" locked="true"/>
                     <Parameters>
                         <Param id="ClkHfCsv" value="false"/>
@@ -870,7 +922,7 @@
                 <Personality template="slowclk" version="2.0" instance="9tMyGnawj2g">
                     <Block location="srss[0].clock[0].slowclk[0]" locked="true"/>
                     <Parameters>
-                        <Param id="divider" value="1"/>
+                        <Param id="divider" value="2"/>
                     </Parameters>
                 </Personality>
                 <Personality template="timerclk" version="3.0" instance="_PQinGIjjmc">
